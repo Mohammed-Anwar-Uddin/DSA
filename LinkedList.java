@@ -150,12 +150,44 @@ public class LinkedList {
         prev.next = prev.next.next;
         return;
     }
+    public Node middlNode(Node head){
+        int idx = 0;
+        Node mid = head;
+        while (idx < size/2) {
+            mid = mid.next;
+            idx = idx+1;
+        }
+        return mid;
+    }
+    public void llPalindrome(){
+        Node mid = middlNode(head);
+
+        //reverse
+        Node prev = null;
+        Node curr = mid;
+        Node next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        
+        Node left = prev;
+        Node right = head;
+        while (left != null) {
+            
+        }
+
+    }
     public static void main(String args[]){
         LinkedList ll = new LinkedList();
         ll.addLast(0);
         ll.addLast(1);
         ll.addLast(2);
-        ll.removeNthFromEnd(3);
+        // ll.removeNthFromEnd(3);
         ll.print();
+        ll.llPalindrome();
+        // ll.print();
     }
 }

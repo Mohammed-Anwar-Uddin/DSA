@@ -1,4 +1,5 @@
-public class LinkedList {
+import java.util.*;
+public class LinkedListTemp {
     public static class Node{
         int data;
         Node next;
@@ -176,18 +177,67 @@ public class LinkedList {
         Node left = prev;
         Node right = head;
         while (left != null) {
-            
+            if(left.data != right.data){
+                System.out.println("Not A valid Palindrome");
+                return ;
+            }
+            left = left.next;
+            right = right.next;
         }
-
+        System.out.println("It is a palindrome");
+        return;
     }
+    public static Boolean isCycle(){
+        Node slow = head; Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void removeCycle(){
+        Node slow = head; Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                fast = head;
+                Node prev = slow;
+                while (slow != fast) {
+                    fast = fast.next;
+                    slow = slow.next;
+                    prev = slow;
+                }
+                prev.next = null;
+            }
+        }
+    }
+    public static void zigZagLL(){
+        
+    }
+   
     public static void main(String args[]){
-        LinkedList ll = new LinkedList();
-        ll.addLast(0);
-        ll.addLast(1);
-        ll.addLast(2);
-        // ll.removeNthFromEnd(3);
-        ll.print();
-        ll.llPalindrome();
-        // ll.print();
+        LinkedList<Integer> head = new LinkedList<>();
+        head.add(10);
+        head.addFirst(10);
+        head.addLast(11);
     }
 }
+
+
+
+// head = new Node(1);
+//         Node temp = new Node(2);
+//         head.next = temp;
+//         head.next.next = new Node(3);
+//         head.next.next.next = temp;
+//         // ll.removeNthFromEnd(3);
+//         // ll.print();
+//         // ll.llPalindrome();
+//         System.out.println(isCycle());
+//         removeCycle();
+//         System.out.println(isCycle());
+        // ll.print();

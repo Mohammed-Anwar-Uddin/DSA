@@ -216,14 +216,119 @@ public class LinkedListTemp {
         }
     }
     public static void zigZagLL(){
+        Node slow = head; Node fast = head;
+        Node mid;
+        //finding mid
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        mid = slow;
+        //reverse
+        Node prev = null;
+        Node curr = mid;
+        Node next;
+        while (curr!=null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node leftNode = head;
+        Node righNode = prev;
+        Node tempNode;
+        Node tempRight;
+        //assigning
+        //1->2->3->4
+        while (righNode != null && righNode.next != null) {
+            tempNode = leftNode.next;
+            tempRight = righNode.next;
+            leftNode.next = righNode;
+            righNode.next = tempNode;
+            leftNode = tempNode;
+            righNode = tempRight;
+        }
         
     }
-   
+    public void deleteMNodesN(int n, int m){
+        Node temp = head;
+        int idx = 1;
+        while (temp != null && temp.next != null) {
+            if(idx == n){
+                Node mNodes = temp;
+                int midx = 0;
+                while (midx <= m && mNodes != null) {
+                    mNodes = mNodes.next;
+                    midx++;
+                }
+                temp.next = mNodes;
+                idx = 0;
+            }
+            temp = temp.next;
+            idx++;
+        }
+    }
+    public static class Stack {
+        static Node head = null;
+        public void push(int data){
+            Node newNode = new Node(data);
+            if(head == null){
+                head = newNode;
+                return;
+            }
+            newNode.next = head;
+            head = newNode;
+        }
+        public Boolean isEmpty(){
+            return head == null;
+        }
+        public int pop(){
+            if(head == null) {
+                return Integer.MIN_VALUE;
+            }
+            int val = head.data;
+            head = head.next;
+            return val;
+        }
+        public int peek(){
+            if(head == null) {
+                return Integer.MIN_VALUE;
+            }
+            return head.data;
+        }
+
+    }
     public static void main(String args[]){
-        LinkedList<Integer> head = new LinkedList<>();
-        head.add(10);
-        head.addFirst(10);
-        head.addLast(11);
+        Stack s = new Stack();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        s.push(4);
+        System.out.println(s.pop());
+        System.out.println(s.pop());
+        System.out.println(s.pop());
+        System.out.println(s.pop());
+        System.out.println(s.peek());
+        System.out.println(s.isEmpty());
+
+        // LinkedList<Integer> head = new LinkedList<>();
+        // head.add(9);
+        // head.addFirst(10);
+        // head.addLast(11);
+        // head.addLast(12);
+        // LinkedListTemp ll = new LinkedListTemp();
+        // ll.addLast(1);
+        // ll.addLast(2);
+        // ll.addLast(3);
+        // ll.addLast(4);
+        // ll.addLast(5);
+        // ll.addLast(6);
+        // ll.addLast(7);
+        // ll.addLast(8);
+        // ll.addLast(9);
+        // ll.addLast(10);
+        // ll.deleteMNodesN(3, 2);
+        // ll.print();
     }
 }
 

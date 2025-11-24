@@ -81,19 +81,52 @@ public class ArrayListClass {
         return false;
     }
 
+    static class Stack {
+        ArrayList<Integer> list = new ArrayList<>();
+        public Boolean isEmpty(){
+            return list.size() == 0;
+        }
+        public void push(int data){
+            list.add(data);
+        }
+        public int pop(){
+            return list.remove(list.size()-1);
+        }
+        public int peek(){
+            return list.get(list.size()-1);
+        }
 
+    }
     public static void main(String[] args) {
-        ArrayList<Integer> newArr = new ArrayList<>();
+        Stack myStack = new Stack();
+
+        myStack.push(4);
+        myStack.push(3);
+        myStack.push(2);
+        myStack.push(1);
+        myStack.push(0);
+        // System.out.println(myStack.pop());
+        // System.out.println(myStack.peek());
+
+        while (!myStack.isEmpty()) {
+            System.out.print(myStack.peek() +  " ");
+            myStack.pop();
+        }
 
 
-        newArr.add(1);
-        newArr.add(2);
-        newArr.add(3);
-        newArr.add(4);
-        newArr.add(5);
-        newArr.add(6);
-        newArr.add(7);
-        newArr.add(8);
+
+
+        // ArrayList<Integer> newArr = new ArrayList<>();
+
+
+        // newArr.add(1);
+        // newArr.add(2);
+        // newArr.add(3);
+        // newArr.add(4);
+        // newArr.add(5);
+        // newArr.add(6);
+        // newArr.add(7);
+        // newArr.add(8);
         // newArr.get(0);
         // int start = 0; int end = newArr.size()-1;
         // while (start < end) {
@@ -111,6 +144,6 @@ public class ArrayListClass {
         // Collections.sort(newArr);
         // System.out.println((newArr));
         // Collections.sort(newArr, Collections.reverseOrder());
-        System.out.println(optimizedPairSum(newArr, 16));
+        // System.out.println(optimizedPairSum(newArr, 16));
     }
 }
